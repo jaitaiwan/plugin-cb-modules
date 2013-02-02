@@ -39,22 +39,22 @@ class cb_modules extends Plugin
 				try
 					IO.log "Initialising module with namespace '../#{path.relative(path.resolve('./'),moduleDir)}/#{moduleInfo.namespace}'"
 					@routes.push
-						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?"
+						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?/*:options?"
 						method: 'get'
 						callback: (req, res, template, next) ->
 							return mvcHelper.loadModule moduleInfo, req, res, template, next
 					@routes.push
-						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?"
+						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?/*:options?"
 						method: 'put'
 						callback: (req, res, template, next) ->
 							return mvcHelper.loadModule moduleInfo, req, res, template, next
 					@routes.push
-						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?"
+						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?/*:options?"
 						method: 'del'
 						callback: (req, res, template, next) ->
 							return mvcHelper.loadModule moduleInfo, req, res, template, next
 					@routes.push
-						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?"
+						address: "/#{moduleInfo.namespace}/:controller?/:action?/:view?/*:options?"
 						method: 'post'
 						callback: (req, res, template, next) ->
 							return mvcHelper.loadModule moduleInfo, req, res, template, next
