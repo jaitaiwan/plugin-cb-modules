@@ -34,7 +34,6 @@ class cb_modules extends Plugin
 			try
 				moduleInfo = require "#{moduleDir}/config"
 				moduleInfo.dir = moduleDir
-				@modules.push moduleInfo
 				IO.log "Loaded module '#{moduleInfo.name}' from '#{path.relative(path.resolve('./'),moduleDir)}'"
 				try
 					IO.log "Initialising module with namespace '../#{path.relative(path.resolve('./'),moduleDir)}/#{moduleInfo.namespace}'"
@@ -59,6 +58,7 @@ class cb_modules extends Plugin
 						callback: (req, res, template, next) ->
 							return mvcHelper.loadModule moduleInfo, req, res, template, next
 					IO.log "Initialised module '#{moduleInfo.name}' with namespace '#{moduleInfo.namespace}'"
+					@modules.push moduleInfo
 				catch e
 					IO.error "Failed to initialise '#{moduleInfo.name}' with namespace '#{moduleInfo.namespace}'"
 					IO.debug e
